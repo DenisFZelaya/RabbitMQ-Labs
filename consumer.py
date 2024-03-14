@@ -12,7 +12,7 @@ def main():
     connection = pika.BlockingConnection(pika.ConnectionParameters('localhost', 5672, '/', pika.PlainCredentials('guest', 'guest')))
     channel = connection.channel()
 
-    channel.queue_declare(queue='golang-queue', durable=False, exclusive=False)
+    channel.queue_declare(queue='golang-queue', durable=True, exclusive=False)
 
     channel.basic_consume(queue='golang-queue', on_message_callback=callback, auto_ack=True)
 
